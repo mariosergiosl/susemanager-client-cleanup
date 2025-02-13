@@ -14,19 +14,23 @@ This script removes a SUSE Manager client from the system. It should be used on 
 ## Usage
 
 USAGE: susemanager-client-cleanup.sh [OPTIONS]
-OPTIONS:
--A           Perform all steps (default)
--nB          Don't run backup
--nC          Don't run cleanup
--oC          Only run cleanup (run backup if -nB is not set)
--nT          Run network test only
--nD          Don't download SSL certificate
--s <server>  Specify the SUSE Manager server
--h           Display this help
-EXAMPLES:
-susemanager-client-cleanup.sh -A            # Perform all steps
-susemanager-client-cleanup.sh -oC -nB       # Only run cleanup, no backup
-susemanager-client-cleanup.sh -nT -s my.server.com.br # Run network test with the specified server
+
+**OPTIONS:**
+
+* `-A`  Perform all steps (default)
+* `-nB` Don't run backup
+* `-nC` Don't run cleanup
+* `-oC` Only run cleanup (run backup if -nB is not set)
+* `-nT` Run network test only
+* `-nD` Don't download SSL certificate
+* `-s <server>` Specify the SUSE Manager server
+* `-h` Display this help
+
+**EXAMPLES:**
+
+* `susemanager-client-cleanup.sh -A`            # Perform all steps
+* `susemanager-client-cleanup.sh -oC -nB`       # Only run cleanup, no backup
+* `susemanager-client-cleanup.sh -nT -s my.server.com.br` # Run network test with the specified server
 
 ## Disclaimer
 
