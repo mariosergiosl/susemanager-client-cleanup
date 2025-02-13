@@ -4,6 +4,7 @@ This script removes a SUSE Manager client from the system. It should be used on 
 
 ## Features
 
+* Run network test
 * Stops SUSE Manager client services
 * Backs up SUSE Manager client configuration files
 * Removes SUSE Manager client packages
