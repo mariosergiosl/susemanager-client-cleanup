@@ -23,7 +23,7 @@ USAGE: susemanager-client-cleanup.sh [OPTIONS]
   * `-h`          Display this help
   
   **Backup Options:**
-  * `-nB`         Don't perform a backup of the system configuration. By default, a backup is created.
+  * `-nB`          Don't perform a backup of the system configuration. By default, a backup is created.
   
   **Cleanup Options:**
   * `-nC`         Don't perform the cleanup (remove packages and files). By default, cleanup is performed.
