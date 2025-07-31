@@ -110,6 +110,7 @@ print_help() {
   $(basename "$0") -A      # Perform all cleanup steps with backup.
   $(basename "$0") -oC -nB    # Only perform cleanup without backup.
   $(basename "$0") -nT -s my.server.com # Perform network tests to the specified server.
+  "
 }
 
 # Check if help was requested
