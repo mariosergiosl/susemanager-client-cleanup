@@ -203,7 +203,7 @@ check_command() {
 exec_command() {
  local cmd="$1"
  echo "$(date +%Y-%m-%d_%H:%M:%S) Executing: $cmd"
- output=$($cmd 2>&1)
+ output=$(eval $cmd 2>&1)
  return_code=$?
  echo "$output"
  if [[ $return_code -ne 0 ]]; then
