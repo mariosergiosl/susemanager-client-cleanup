@@ -37,10 +37,11 @@
 # AUTHOR: Mario Luz <mario.luz[at]suse.com>
 # COMPANY: SUSE
 #
-# VERSION: 1.4
-# CREATED: 2024-02-12
+# VERSION: 1.5
+# CREATED: 2025-02-12
+# MODIFIED: 2025-10-28
 # REVISION:
-#
+# 
 # =======================================================================================
 
 ##########################################################################################
@@ -682,10 +683,27 @@ if [[ "$use_option_nD" == "false" && "$use_option_nT" == "false" ]]; then # Chec
     # Use HTTPS instead of HTTP (more secure)
     # Download the certificate to a more specific temporary file
     CERT_FILE="/tmp/susemanager-cert.pem"
+    DOWNLOAD_SUCCESS=false
 
-    wget -q --show-progress "https://$SUSE_MANAGER_SERVER/pub/RHN-ORG-TRUSTED-SSL-CERT" -O "$CERT_FILE" 2>&1
-
+    # Attempt to download with wget
+    echo "$(date +%Y-%m-%d_%H:%M:%S) Attempting download with wget..."
+    wget -q --show-progress --no-check-certificate "https://$SUSE_MANAGER_SERVER/pub/RHN-ORG-TRUSTED-SSL-CERT" -O "$CERT_FILE" 2>&1
     if [[ $? -eq 0 ]]; then
+        echo "$(date +%Y-%m-%d_%H:%M:%S) Download with wget successful."
+        DOWNLOAD_SUCCESS=true
+    else
+        echo "$(date +%Y-%m-%d_%H:%M:%S) wget failed. Trying with curl..."
+        # Attempt to download with curl
+        curl -k "https://$SUSE_MANAGER_SERVER/pub/RHN-ORG-TRUSTED-SSL-CERT" -o "$CERT_FILE" 2>&1
+        if [[ $? -eq 0 ]]; then
+            echo "$(date +%Y-%m-%d_%H:%M:%S) Download with curl successful."
+            DOWNLOAD_SUCCESS=true
+        else
+            echo "$(date +%Y-%m-%d_%H:%M:%S) curl also failed."
+        fi
+    fi
+
+    if [[ "$DOWNLOAD_SUCCESS" == "true" ]]; then
      echo "$(date +%Y-%m-%d_%H:%M:%S) SSL certificate successfully downloaded to: $CERT_FILE"
 
      # Extract only the certificate (remove other information)
